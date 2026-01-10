@@ -1,0 +1,21 @@
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+myenv/
+venv/
+.env/
+
+
+# Data & datasets
+data/
+*.csv
+
+# ML models
+*.pkl
+
+#Other files
+delete.py
+*.txt
