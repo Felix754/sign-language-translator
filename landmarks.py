@@ -62,7 +62,7 @@ for label in os.listdir(DATA_DIR):
         data.append(angles)
         labels.append(label)
 
-# ✅ 10 кутів, не 20
+
 columns = [f"angle_{i}" for i in range(10)]
 df = pd.DataFrame(data, columns=columns)
 df["label"] = labels

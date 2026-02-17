@@ -3,6 +3,7 @@ import mediapipe as mp
 import pickle
 import numpy as np
 
+
 mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
 
