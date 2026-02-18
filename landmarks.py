@@ -4,24 +4,26 @@ import cv2
 import os
 import numpy as np
 
-DATA_DIR = './data'
+DATA_DIR = "./data"
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=True, max_num_hands=1)
 
+
 def angle(a, b, c):
     ba = np.array(a) - np.array(b)
     bc = np.array(c) - np.array(b)
-    cosang = np.dot(ba, bc) / (np.linalg.norm(ba)*np.linalg.norm(bc) + 1e-6)
+    cosang = np.dot(ba, bc) / (np.linalg.norm(ba) * np.linalg.norm(bc) + 1e-6)
     return np.arccos(np.clip(cosang, -1.0, 1.0))
+
 
 # (MCP, PIP, DIP, TIP)
 FINGERS = [
-    [1, 2, 3, 4],     # thumb
-    [5, 6, 7, 8],     # index
+    [1, 2, 3, 4],  # thumb
+    [5, 6, 7, 8],  # index
     [9, 10, 11, 12],  # middle
-    [13, 14, 15, 16], # ring
-    [17, 18, 19, 20]  # pinky
+    [13, 14, 15, 16],  # ring
+    [17, 18, 19, 20],  # pinky
 ]
 
 data = []
@@ -47,17 +49,21 @@ for label in os.listdir(DATA_DIR):
 
         for a, b, c, d in FINGERS:
             # MCP-PIP-DIP
-            angles.append(angle(
-                [lm[a].x, lm[a].y, lm[a].z],
-                [lm[b].x, lm[b].y, lm[b].z],
-                [lm[c].x, lm[c].y, lm[c].z]
-            ))
+            angles.append(
+                angle(
+                    [lm[a].x, lm[a].y, lm[a].z],
+                    [lm[b].x, lm[b].y, lm[b].z],
+                    [lm[c].x, lm[c].y, lm[c].z],
+                )
+            )
             # PIP-DIP-TIP
-            angles.append(angle(
-                [lm[b].x, lm[b].y, lm[b].z],
-                [lm[c].x, lm[c].y, lm[c].z],
-                [lm[d].x, lm[d].y, lm[d].z]
-            ))
+            angles.append(
+                angle(
+                    [lm[b].x, lm[b].y, lm[b].z],
+                    [lm[c].x, lm[c].y, lm[c].z],
+                    [lm[d].x, lm[d].y, lm[d].z],
+                )
+            )
 
         data.append(angles)
         labels.append(label)

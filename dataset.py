@@ -32,7 +32,9 @@ gestures = [
     "v",
     "w",
     "x",
-    "y"
+    "y",
+    "space",
+    "backspace"
 ]
 
 
