@@ -15,8 +15,8 @@ data/
 *.csv
 
 # ML models
-*.pkl
+#*.pkl
 
 #Other files
 delete.py
-*.txt
+#*.txt
